@@ -1,6 +1,13 @@
 #include <iostream>
+#include <ncurses.h>
 
 int main()
 {
-  std::cout << "Hello wordle!";
+  initscr();
+  printw("Hello wordle (with curses)!");
+  refresh();
+  getch();
+  endwin();
+
+  return 0;
 }
