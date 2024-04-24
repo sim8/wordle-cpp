@@ -13,6 +13,9 @@ public:
   void renderGuesses(GameState *gameState);
   void renderGameState(GameState *gameState);
   std::string getValidGuess();
+
+private:
+  void renderCharWithColor(char c, int index, GameState *gameState);
 };
 
 #endif // WORDLE_CPP_IO_H_

@@ -1,6 +1,9 @@
 #include "io.h"
 #include <string>
+#include <cctype>
 #include <ncurses.h>
+
+// public
 
 IO::IO()
 {
@@ -10,6 +13,9 @@ IO::IO()
 void IO::initialize()
 {
   initscr(); // must be called before any other routines
+  start_color();
+  init_pair(1, COLOR_WHITE, COLOR_GREEN);  // full match
+  init_pair(2, COLOR_WHITE, COLOR_YELLOW); // incorrect placement
 }
 
 void IO::terminate()
@@ -23,25 +29,26 @@ void IO::renderGuesses(GameState *gameState)
 
   for (int i = 0; i < 6; i++)
   {
-    renderedGuessesStr += "+-+-+-+-+-+\n";
+    printw("+-+-+-+-+-+\n");
 
     if (gameState->getGuesses()->size() > i)
     {
       std::string guessAtIndex = gameState->getGuesses()->at(i);
       for (int j = 0; j < 5; j++)
       {
-        renderedGuessesStr += "|";
-        renderedGuessesStr += guessAtIndex[j];
+        printw("|");
+        IO::renderCharWithColor(guessAtIndex[j], j, gameState);
       }
-      renderedGuessesStr += "|\n";
+
+      printw("|\n");
     }
     else
     {
-      renderedGuessesStr += "| | | | | |\n";
+      printw("| | | | | |\n");
     }
   }
 
-  renderedGuessesStr += "+-+-+-+-+-+\n";
+  printw("+-+-+-+-+-+\n");
 
   printw(renderedGuessesStr.c_str());
 }
@@ -51,7 +58,6 @@ void IO::renderGameState(GameState *gameState)
   clear();
   IO::renderGuesses(gameState);
   refresh();
-  printw("Rendered game state!\n");
 }
 
 std::string IO::getValidGuess()
@@ -68,4 +74,21 @@ std::string IO::getValidGuess()
   }
 
   return guessStr;
+}
+
+// private
+
+void IO::renderCharWithColor(char c, int index, GameState *gameState)
+{
+  if (c == gameState->getWordToGuess().at(index))
+  {
+    attron(COLOR_PAIR(1));
+  }
+  else if (gameState->getWordToGuess().find(c) != std::string::npos)
+  {
+    attron(COLOR_PAIR(2));
+  }
+  addch(toupper(c));
+
+  attroff(COLOR_PAIR(1));
 }
