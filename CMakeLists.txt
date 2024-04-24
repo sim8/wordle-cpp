@@ -9,7 +9,7 @@ include_directories(${CURSES_INCLUDE_DIR})
 include(CTest)
 enable_testing()
 
-add_executable(wordle-cpp main.cpp)
+add_executable(wordle-cpp main.cpp renderer.cpp)
 
 target_link_libraries(wordle-cpp ${CURSES_LIBRARIES})
 
