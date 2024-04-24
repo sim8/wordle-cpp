@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "io.h"
 #include "gameState.h"
 
@@ -17,6 +18,11 @@ int main()
   // // getch();
 
   // io.renderGameState();
+
+  while (gameState.hasRemainingGuesses())
+  {
+    std::string guess = io.getValidGuess();
+  }
 
   io.terminate();
   return 0;

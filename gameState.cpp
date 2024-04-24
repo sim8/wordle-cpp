@@ -4,6 +4,8 @@
 
 std::vector<std::string> words = {"arise", "world", "drink", "happy"};
 
+// public
+
 GameState::GameState()
 {
 }
@@ -17,6 +19,13 @@ std::string GameState::getWordToGuess()
 {
   return wordToGuess;
 }
+
+bool GameState::hasRemainingGuesses()
+{
+  return true;
+}
+
+// private
 
 std::string GameState::getRandomWord()
 {

@@ -9,6 +9,7 @@ public:
   GameState();
   void initialize();
   std::string getWordToGuess();
+  bool hasRemainingGuesses();
 
 private:
   std::string wordToGuess;
