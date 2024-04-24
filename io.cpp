@@ -29,8 +29,6 @@ std::string IO::getValidGuess()
   printw("Enter a guess:\n");
   char *guess = new char[5];
   getnstr(guess, 5);
-  // TODO add validation
-
   std::string guessStr = std::string(guess);
 
   if (guessStr.length() != 5)
