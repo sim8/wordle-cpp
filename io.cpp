@@ -48,6 +48,7 @@ void IO::renderGuesses(GameState *gameState)
 
 void IO::renderGameState(GameState *gameState)
 {
+  clear();
   IO::renderGuesses(gameState);
   refresh();
   printw("Rendered game state!\n");
