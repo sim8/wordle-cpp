@@ -17,11 +17,13 @@ int main()
   // // refresh();
   // // getch();
 
-  // io.renderGameState();
+  io.renderGameState(&gameState);
 
   while (gameState.hasRemainingGuesses())
   {
     std::string guess = io.getValidGuess();
+    gameState.makeGuess(guess);
+    io.renderGameState(&gameState);
   }
 
   io.terminate();

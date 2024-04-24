@@ -17,11 +17,40 @@ void IO::terminate()
   endwin(); // must be called before exiting
 }
 
-void IO::renderGameState()
+void IO::renderGuesses(GameState *gameState)
 {
-  printw("Hello world!\n");
+  std::string renderedGuessesStr = "";
+
+  for (int i = 0; i < 6; i++)
+  {
+    renderedGuessesStr += "+-+-+-+-+-+\n";
+
+    if (gameState->getGuesses()->size() > i)
+    {
+      std::string guessAtIndex = gameState->getGuesses()->at(i);
+      for (int j = 0; j < 5; j++)
+      {
+        renderedGuessesStr += "|";
+        renderedGuessesStr += guessAtIndex[j];
+      }
+      renderedGuessesStr += "|\n";
+    }
+    else
+    {
+      renderedGuessesStr += "| | | | | |\n";
+    }
+  }
+
+  renderedGuessesStr += "+-+-+-+-+-+\n";
+
+  printw(renderedGuessesStr.c_str());
+}
+
+void IO::renderGameState(GameState *gameState)
+{
+  IO::renderGuesses(gameState);
   refresh();
-  getch();
+  printw("Rendered game state!\n");
 }
 
 std::string IO::getValidGuess()

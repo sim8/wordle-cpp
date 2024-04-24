@@ -8,6 +8,7 @@ std::vector<std::string> words = {"arise", "world", "drink", "happy"};
 
 GameState::GameState()
 {
+  guesses = {};
 }
 
 void GameState::initialize()
@@ -23,6 +24,16 @@ std::string GameState::getWordToGuess()
 bool GameState::hasRemainingGuesses()
 {
   return true;
+}
+
+std::vector<std::string> *GameState::getGuesses()
+{
+  return &guesses;
+}
+
+void GameState::makeGuess(std::string guess)
+{
+  guesses.push_back(guess);
 }
 
 // private

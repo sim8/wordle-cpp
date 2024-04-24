@@ -1,4 +1,5 @@
 #include <string>
+#include "gameState.h"
 
 #ifndef WORDLE_CPP_IO_H_
 #define WORDLE_CPP_IO_H_
@@ -9,7 +10,8 @@ public:
   IO();
   void initialize();
   void terminate();
-  void renderGameState();
+  void renderGuesses(GameState *gameState);
+  void renderGameState(GameState *gameState);
   std::string getValidGuess();
 };
 
