@@ -13,6 +13,7 @@ GameState::GameState()
 
 void GameState::initialize()
 {
+  guesses = {};
   wordToGuess = getRandomWord();
 }
 
@@ -23,7 +24,17 @@ std::string GameState::getWordToGuess()
 
 bool GameState::hasRemainingGuesses()
 {
-  return true;
+  return getGuesses()->size() < 6;
+}
+
+bool GameState::hasWon()
+{
+  if (getGuesses()->empty())
+  {
+    return false;
+  }
+  std::string lastGuess = getGuesses()->back();
+  return lastGuess == wordToGuess;
 }
 
 std::vector<std::string> *GameState::getGuesses()

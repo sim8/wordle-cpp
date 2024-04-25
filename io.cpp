@@ -57,6 +57,16 @@ void IO::renderGameState(GameState *gameState)
 {
   clear();
   IO::renderGuesses(gameState);
+
+  if (gameState->hasWon())
+  {
+    printw("Congratulations!\n");
+  }
+  else if (!gameState->hasRemainingGuesses())
+  {
+    printw("Hard luck! Better luck next time!\n");
+  }
+
   refresh();
 }
 
@@ -74,6 +84,14 @@ std::string IO::getValidGuess()
   }
 
   return guessStr;
+}
+
+bool IO::getPlayAgain()
+{
+
+  printw("Play again? (y/n)\n");
+  char input = getch();
+  return toupper(input) == 'Y';
 }
 
 // private

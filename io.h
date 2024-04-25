@@ -13,6 +13,7 @@ public:
   void renderGuesses(GameState *gameState);
   void renderGameState(GameState *gameState);
   std::string getValidGuess();
+  bool getPlayAgain();
 
 private:
   void renderCharWithColor(char c, int index, GameState *gameState);

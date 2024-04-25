@@ -13,6 +13,7 @@ public:
   std::vector<std::string> *getGuesses();
   void makeGuess(std::string guess);
   bool hasRemainingGuesses();
+  bool hasWon();
 
 private:
   std::string wordToGuess;
